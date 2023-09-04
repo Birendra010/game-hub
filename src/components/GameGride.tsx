@@ -1,78 +1,39 @@
-import { Button, ButtonGroup, Card, CardBody, CardFooter, Divider, Heading, Image, Stack, Text } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import apiClient from "../services/api-client";
+import { SimpleGrid, Text } from "@chakra-ui/react";
+import useGames from "../hooks/useGames";
+import { Genre } from "../hooks/useGenres";
+import GameCard from "./GameCard";
+import GameCardContainer from "./GameCardContainer";
+import GameCardSkeleton from "./GameCardSkeleton";
 
-interface Game {
-    id: number;
-    name: string;
-    background_image:string
-
+interface Props {
+    selectedGenre: Genre | null
 }
 
-interface FetchGamesResponse {
-    count: number;
-    results: Game[];
-}
-
-const GameGrid = () => {
-    const [games, setGames] = useState<Game[]>([]);
-    const [error, setError] = useState("");
-
-    useEffect(() => {
-        apiClient
-            .get<FetchGamesResponse>("/xgames")
-            .then((res) => setGames(res.data.results))
-            .catch((err) => setError(err.message));
-    },[]);
+const GameGrid = ({ selectedGenre }: Props) => {
+    const { data, error, isLoading } = useGames(selectedGenre);
+    const length = 15;
+    const skeletons = new Array(length).fill(null)
 
     return (
         <>
-            
-                 { error && <Text>{error}</Text>}
-            <div>
-                {games.map((game) => (
-
-
-                    
-                    <Card maxW='sm'>
-                        <CardBody>
-                            <Image
-                                src={game.background_image}
-                                alt='Green double couch with wooden legs'
-                                borderRadius='lg'
-                            />
-                            <Stack mt='6' spacing='3'>
-                                <Heading size='md'>Living room Sofa</Heading>
-
-                                <Text color='blue.600' fontSize='2xl'>
-                                    $450
-                                </Text>
-                            </Stack>
-                        </CardBody>
-                        <Divider />
-                        <CardFooter>
-                            <ButtonGroup spacing='2'>
-                                <Button variant='solid' colorScheme='blue'>
-                                    Buy now
-                                </Button>
-                                <Button variant='ghost' colorScheme='blue'>
-                                    Add to cart
-                                </Button>
-                            </ButtonGroup>
-                        </CardFooter>
-                    </Card>
-                    
-                    
+            {error && <Text>{error}</Text>}
+            <SimpleGrid
+                columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
+                padding="10px"
+                spacing={3}
+            >
+                {isLoading &&
+                    skeletons.map((skeleton,index) => (
+                        <GameCardContainer key={index}>
+                            <GameCardSkeleton />
+                        </GameCardContainer>
+                    ))}
+                {data.map((game) => (
+                    <GameCardContainer key={game.id}>
+                        <GameCard game={game} />
+                    </GameCardContainer>
                 ))}
-            </div> 
-
-
-
-
-
-
-
-            
+            </SimpleGrid>
         </>
     );
 };
