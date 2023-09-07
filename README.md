@@ -28,4 +28,4 @@ If you are developing a production application, we recommend updating the config
 
 
 
-Refactor- fetch genres with React Query ,Refactor- fetch platforms with React Query
+Refactor- fetch genres with React Query ,Refactor- fetch platforms with React Query ,Refactor- remove duplicate interfaces
