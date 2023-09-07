@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-// import { all } from "axios";
+
 import { ReactNode } from "react";
 
 interface Props {

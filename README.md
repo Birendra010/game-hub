@@ -27,5 +27,6 @@ If you are developing a production application, we recommend updating the config
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
 
 
+Learn about React Query and impliment ->fetch genres , fetch platforms,fetch genres, fetch platforms ,remove duplicate interfaces ,Implement infinite queries
 
-Refactor- fetch genres with React Query ,Refactor- fetch platforms with React Query ,Refactor- remove duplicate interfaces
+
