@@ -28,7 +28,3 @@ If you are developing a production application, we recommend updating the config
 
 
 
-
-read-lazy loading ,useMemo Hook
-project update- Show loading skeletons,Displaying platform icons ,
-Fetch the genres,Show a spinner while fetching the genres
