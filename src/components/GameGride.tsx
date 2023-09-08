@@ -22,7 +22,7 @@ const GameGrid = ({ gameQuery }: Props) => {
     } = useGames(gameQuery);
     const skeletons = new Array(15).fill(null);
 
-//handal infinite scroll window 
+//handal infinite scroll 
     const handleScroll = () => {
         if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight || isLoading) {
             return;
@@ -37,10 +37,6 @@ const GameGrid = ({ gameQuery }: Props) => {
 
 
     if (error) return <Text>{error.message}</Text>;
-
-
-
-
 
     return (
         <Box padding="10px">
