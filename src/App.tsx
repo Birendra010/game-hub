@@ -10,7 +10,6 @@ import { Platform } from "./hooks/usePlatforms";
 
 
 import { Genre } from "./hooks/useGenres";
-// import SideBarDrawer from "./components/Drawer/SideBarDrawer";
 
 
 export interface GameQuery {
